@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import * as todosActions from 'actions/todo';
-import type { TodosState, Id } from 'types/todos';
-// import { toggleTodo } from '../actions/todos';
-// import { visibleTodosSelector } from '../selectors';
+import type { TodosState, Id, Todo } from 'types/todos';
+import type { Dispatch } from 'types';
+
 import TodoList from 'components/TodoList';
 
-// import type { State, Dispatch } from '../types';
 type Props = {
   todos: TodosState,
   todosActions: any
@@ -24,7 +23,9 @@ class TodoListContainer extends Component<Props> {
   onTodoClick = (id: Id) => {
     const { todos } = this.props;
     const todo = _.find(todos.data, { id });
-    this.props.todosActions.toggleTodo(id, !todo.completed);
+    if (todo) {
+      this.props.todosActions.toggleTodo(id, !todo.completed);
+    }
   }
 
   render() {
@@ -37,7 +38,7 @@ const mapStateToProps = (state: any) => ({
   todos: state.todos,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   todosActions: bindActionCreators(todosActions, dispatch),
 });
 

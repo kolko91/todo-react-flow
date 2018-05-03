@@ -12,8 +12,8 @@ import {
   // SET_VISIBILITY_FILTER
 } from 'actions/todo';
 
-import type { DefaultAction } from 'types/index'; // @todo: change this
-import type { TodosState, Todos, Id } from 'types/todos';
+import type { TodosState, Todos, Id, TodosAction } from 'types/todos';
+import { ADD_TODO } from '../actions/todo';
 
 const initialState: TodosState = {
   data: [],
@@ -21,11 +21,9 @@ const initialState: TodosState = {
   error: false,
 };
 
-const toggleTodo = (todos: Todos, id: Id): Todos => {
-  return todos.map(t => (t.id !== id ? t : { ...t, completed: !t.completed }));
-};
+const toggleTodo = (todos: Todos, id: Id): Todos => todos.map(t => (t.id !== id ? t : { ...t, completed: !t.completed }));
 
-export default (state: TodosState = initialState, action: DefaultAction) => {
+export default (state: TodosState = initialState, action: TodosAction) => {
   switch (action.type) {
     case TODO_FETCH:
       return {
@@ -47,9 +45,12 @@ export default (state: TodosState = initialState, action: DefaultAction) => {
         loaded: true,
         error: true,
       };
-    case TOGGLE_TODO:
+    case TOGGLE_TODO: {
       const newData = toggleTodo(state.data, action.payload.data.id);
       return { ...state, data: newData };
+    }
+    case ADD_TODO:
+      return { ...state, data: [...state.data, action.payload.data] };
     default:
       return state;
   }

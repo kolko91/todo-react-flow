@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { addTodo } from 'actions/todo';
+import { bindActionCreators } from 'redux';
+import type { Text, Todo } from 'types/todos';
 
 const TodoInput = styled.input`
     position: relative;
@@ -33,28 +36,32 @@ const Title = styled.h1`
     text-rendering: optimizeLegibility;
 `;
 
-export type Props = any;
+export type Props = {
+  addTodo: (text: Text) => Promise<Todo>
+};
 
 export type State = {
-
+  value: Text
 };
 
 class AddTodo extends Component<Props, State> {
   state = {
     value: '',
-  };
-  input: HTMLInputElement;
+  }
   handleChange = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
     this.setState({ value: event.currentTarget.value });
-  };
+  }
   handleSubmit = (event: Event) => {
     event.preventDefault();
-    if (!this.state.value.trim()) {
+    const { value } = this.state;
+    if (!value.trim()) {
       return;
     }
-    // this.props.dispatch(addTodo(this.state.value));
-    this.setState({ value: '' });
-  };
+    this.props.addTodo(value).then(() => {
+      this.setState({ value: '' });
+    });
+  }
+
   render() {
     return (
       <div>
@@ -71,4 +78,15 @@ class AddTodo extends Component<Props, State> {
   }
 }
 
-export default connect()(AddTodo);
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  addTodo: bindActionCreators(addTodo, dispatch),
+});
+
+const connector = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default connector(AddTodo);
