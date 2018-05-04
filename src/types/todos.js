@@ -44,5 +44,6 @@ export type TodosAction =
   | { type: typeof TODO_SUCCESS, payload: TodoListPayload }
   | { type: typeof TODO_FAIL, error: any }
   | { type: typeof ADD_TODO, payload: TodoPayload }
+  | { type: typeof DELETE_TODO, payload: TodoPayload }
   | { type: typeof TOGGLE_TODO, payload: TodoPayload };
 

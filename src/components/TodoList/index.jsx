@@ -13,13 +13,14 @@ const List = styled.ul`
 
 export type Props = {
   todos: TodosState,
-  onTodoClick: (id: Id) => void
+  onTodoClick: (id: Id) => void,
+  onDeleteClick: (id: Id) => void,
 };
 
-const TodoList = ({ todos, onTodoClick }: Props) => (
+const TodoList = ({ todos, onTodoClick, onDeleteClick }: Props) => (
   <List>
     {todos.data.map(todo => (
-      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} onDeleteClick={() => onDeleteClick(todo.id)} />
     ))}
   </List>
 );

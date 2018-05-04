@@ -123,7 +123,35 @@ export const addTodo = (text: Text) => async (dispatch: Dispatch) => {
     return onError(error);
   }
 };
-export const deleteTodo = (id: Id) => ({ type: DELETE_TODO, id });
+
+export const deleteTodo = (id: Id) => async (dispatch: Dispatch) => {
+  function onSuccess(success) {
+    dispatch({ type: DELETE_TODO, payload: success });
+    return success;
+  }
+
+  function onError(error) {
+    dispatch({ type: TODO_FAIL, error });
+    return error;
+  }
+  try {
+    /* const success = await axios({
+        method: 'get',
+        url: `/info/fleets/sites`,
+        headers: {},
+        withCredentials: true,
+        params
+      }) */
+
+    // return onSuccess(success);
+    return onSuccess({
+      data: { id },
+    });
+  } catch (error) {
+    return onError(error);
+  }
+};
+
 export const editTodo = (id: Id, text: Text) => ({ type: EDIT_TODO, id, text });
 export const completeTodo = (id: Id) => ({ type: COMPLETE_TODO, id });
 export const completeAllTodos = () => ({ type: COMPLETE_ALL_TODOS });

@@ -7,6 +7,7 @@ import toogleCheckImage from './toogle-check.svg';
 
 export type Props = {
   onClick: () => void,
+  onDeleteClick:()=> void,
   completed: boolean,
   text: Text
 };
@@ -81,7 +82,7 @@ const EditField = styled.input`
 `;
 
 
-const Todo = ({ onClick, completed, text }: Props) => (
+const Todo = ({ onClick, completed, text, onDeleteClick }: Props) => (
   <Item
     completed={completed}
   >
@@ -92,7 +93,7 @@ const Todo = ({ onClick, completed, text }: Props) => (
         type="checkbox"
       />
       <Label>{text}</Label>
-      <DestroyButton />
+      <DestroyButton onClick={onDeleteClick} />
     </div>
     {/* <EditField value={text} /> */}
 

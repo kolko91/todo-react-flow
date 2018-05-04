@@ -32,7 +32,11 @@ class TodoListContainer extends Component<Props> {
 
   render() {
     const { todos } = this.props;
-    return <TodoList todos={todos} onTodoClick={this.onTodoClick} />;
+    return (<TodoList
+      todos={todos}
+      onTodoClick={this.onTodoClick}
+      onDeleteClick={this.props.todosActions.deleteTodo}
+    />);
   }
 }
 
