@@ -36,6 +36,7 @@ class TodoListContainer extends Component<Props> {
       todos={todos}
       onTodoClick={this.onTodoClick}
       onDeleteClick={this.props.todosActions.deleteTodo}
+      editTodo={this.props.todosActions.editTodo}
     />);
   }
 }

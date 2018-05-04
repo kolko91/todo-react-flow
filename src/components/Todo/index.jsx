@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
+import TodoEditTextInput from 'components/TodoEditTextInput';
 import type { Text } from 'types/todos';
 import toogleImage from './toogle.svg';
 import toogleCheckImage from './toogle-check.svg';
 
 export type Props = {
   onClick: () => void,
-  onDeleteClick:()=> void,
+  onDeleteClick: ()=> void,
+  editTodo: (text: Text)=>void,
   completed: boolean,
   text: Text
 };
@@ -74,30 +76,57 @@ const Item = styled.li`
     }
 `;
 
-const EditField = styled.input`
-    display: block;
-    width: 506px;
-    padding: 13px 17px 12px 17px;
-    margin: 0 0 0 43px;
-`;
 
+class Todo extends PureComponent<Props, {editing: boolean}> {
+  state = {
+    editing: false,
+  }
 
-const Todo = ({ onClick, completed, text, onDeleteClick }: Props) => (
-  <Item
-    completed={completed}
-  >
-    <div>
-      <Toggle
-        checked={completed}
-        onChange={onClick}
-        type="checkbox"
-      />
-      <Label>{text}</Label>
-      <DestroyButton onClick={onDeleteClick} />
-    </div>
-    {/* <EditField value={text} /> */}
+  handleDoubleClick = () => {
+    this.setState({ editing: true });
+  }
 
-  </Item>
-);
+  handleSave = (text: Text) => {
+    if (text.length === 0) {
+      this.props.onDeleteClick();
+    } else {
+      this.props.editTodo(text);
+    }
+    this.setState({ editing: false });
+  }
+
+  render() {
+    const {
+      onClick, completed, text, onDeleteClick,
+    } = this.props;
+    const { editing } = this.state;
+    let element;
+
+    if (editing) {
+      element = (
+        <TodoEditTextInput
+          text={text}
+          onSave={(t: Text) => this.handleSave(t)}
+        />
+      );
+    } else {
+      element = (
+        <div>
+          <Toggle
+            checked={completed}
+            onChange={onClick}
+            type="checkbox"
+          />
+          <Label onDoubleClick={this.handleDoubleClick}>{text}</Label>
+          <DestroyButton onClick={onDeleteClick} />
+        </div>);
+    }
+
+    return (
+      <Item completed={completed} >
+        {element}
+      </Item>);
+  }
+}
 
 export default Todo;

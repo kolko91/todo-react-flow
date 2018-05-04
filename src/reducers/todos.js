@@ -3,17 +3,12 @@ import {
   TODO_FETCH,
   TODO_SUCCESS,
   TOGGLE_TODO,
-  // ADD_TODO,
-  // CLEAR_COMPLETED,
-  // COMPLETE_ALL_TODOS,
-  // COMPLETE_TODO,
-  // DELETE_TODO,
-  // EDIT_TODO,
-  // SET_VISIBILITY_FILTER
+  EDIT_TODO,
+  ADD_TODO,
+  DELETE_TODO,
 } from 'actions/todo';
 
-import type { TodosState, Todos, Id, TodosAction } from 'types/todos';
-import { ADD_TODO, DELETE_TODO } from '../actions/todo';
+import type { TodosState, Todos, Todo, Id, TodosAction } from 'types/todos';
 
 const initialState: TodosState = {
   data: [],
@@ -51,8 +46,22 @@ export default (state: TodosState = initialState, action: TodosAction) => {
     }
     case ADD_TODO:
       return { ...state, data: [...state.data, action.payload.data] };
-    case DELETE_TODO:
-      return { ...state, data: state.data.filter(t => t.id !== action.payload.data.id) };
+    case DELETE_TODO: {
+      const { payload: { data: { id } } } = action;
+      return { ...state, data: state.data.filter(t => t.id !== id) };
+    }
+    case EDIT_TODO: {
+      const { payload: { data } } = action;
+      return {
+        ...state,
+        data: state.data.map((todo: Todo) => {
+          if (todo.id === data.id) {
+            return { ...todo, ...data };
+          }
+          return todo;
+        }),
+      };
+    }
     default:
       return state;
   }

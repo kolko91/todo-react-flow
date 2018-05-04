@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Todo from 'components/Todo';
 
-import type { TodosState, Id } from 'types/todos';
+import type { TodosState, Id, Text } from 'types/todos';
 
 const List = styled.ul`
     margin: 0;
@@ -15,12 +15,21 @@ export type Props = {
   todos: TodosState,
   onTodoClick: (id: Id) => void,
   onDeleteClick: (id: Id) => void,
+  editTodo: (id: Id, text: Text) => void
 };
 
-const TodoList = ({ todos, onTodoClick, onDeleteClick }: Props) => (
+const TodoList = ({
+  todos, onTodoClick, onDeleteClick, editTodo,
+}: Props) => (
   <List>
     {todos.data.map(todo => (
-      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} onDeleteClick={() => onDeleteClick(todo.id)} />
+      <Todo
+        key={todo.id}
+        {...todo}
+        onClick={() => onTodoClick(todo.id)}
+        onDeleteClick={() => onDeleteClick(todo.id)}
+        editTodo={(text: Text) => editTodo(todo.id, text)}
+      />
     ))}
   </List>
 );
