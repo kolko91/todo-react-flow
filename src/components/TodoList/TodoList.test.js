@@ -12,12 +12,12 @@ describe('component', () => {
           data: [
             {
               id: 1,
-              text: 'title1',
-              completed: true,
+              title: 'title1',
+              done: true,
             },
             {
-              text: 'test2',
-              completed: false,
+              title: 'test2',
+              done: false,
               id: 4,
             },
           ],

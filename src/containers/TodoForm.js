@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addTodo } from 'actions/todo';
 import { bindActionCreators } from 'redux';
-import type { Text, Todo } from 'types/todos';
+import type { Title as TitleType, Todo } from 'types/todos';
 
 const TodoInput = styled.input`
     position: relative;
@@ -37,11 +37,11 @@ const Title = styled.h1`
 `;
 
 export type Props = {
-  addTodo: (text: Text) => Promise<Todo>
+  addTodo: (title: TitleType) => Promise<Todo>
 };
 
 export type State = {
-  value: Text
+  value: TitleType
 };
 
 class AddTodo extends Component<Props, State> {

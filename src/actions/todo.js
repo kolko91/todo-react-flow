@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Id, Text, Todo } from 'types/todos';
+import type { Id, Title, Todo } from 'types/todos';
 import type { Dispatch } from 'types';
 
 export const TODO_FETCH: 'TODO_FETCH' = 'TODO_FETCH';
@@ -52,7 +52,7 @@ export function toggleTodo(id: Id, todo: Todo) {
       const success = await axios({
         method: 'PUT',
         url: `/todos/${id}`,
-        data: { ...todo, completed: !todo.completed },
+        data: { ...todo, done: !todo.done },
       });
       return onSuccess(success);
     } catch (error) {
@@ -62,7 +62,7 @@ export function toggleTodo(id: Id, todo: Todo) {
 }
 
 
-export const addTodo = (text: Text) => async (dispatch: Dispatch) => {
+export const addTodo = (title: Title) => async (dispatch: Dispatch) => {
   function onSuccess(success) {
     dispatch({ type: ADD_TODO, payload: success });
     return success;
@@ -77,8 +77,8 @@ export const addTodo = (text: Text) => async (dispatch: Dispatch) => {
       method: 'POST',
       url: '/todos',
       data: {
-        text,
-        completed: false,
+        title,
+        done: false,
       },
     });
 

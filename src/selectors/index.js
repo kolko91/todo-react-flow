@@ -13,9 +13,9 @@ export const filteredTodosSelector = createSelector(
   (todos, filter) => {
     switch (filter) {
       case SHOW_COMPLETED:
-        return { ...todos, data: todos.data.filter(t => t.completed) };
+        return { ...todos, data: todos.data.filter(t => t.done) };
       case SHOW_ACTIVE:
-        return { ...todos, data: todos.data.filter(t => !t.completed) };
+        return { ...todos, data: todos.data.filter(t => !t.done) };
       case SHOW_ALL:
       default:
         return todos;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Todo from 'components/Todo';
 
-import type { TodosState, Id, Text, Todo as TodoType } from 'types/todos';
+import type { TodosState, Id, Title, Todo as TodoType } from 'types/todos';
 
 const List = styled.ul`
     margin: 0;
@@ -28,7 +28,7 @@ const TodoList = ({
         {...todo}
         onClick={() => onTodoClick(todo.id)}
         onDeleteClick={() => onDeleteClick(todo.id)}
-        editTodo={(text: Text) => editTodo(todo.id, { ...todo, text })}
+        editTodo={(text: Title) => editTodo(todo.id, { ...todo, text: title })}
       />
     ))}
   </List>

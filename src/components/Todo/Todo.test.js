@@ -10,8 +10,8 @@ describe('component', () => {
         onClick: jest.fn(),
         onDeleteClick: jest.fn(),
         editTodo: jest.fn(),
-        completed: false,
-        text: 'Test',
+        done: false,
+        title: 'Test',
       };
       const tree = renderer.create(<Todo {...props} />).toJSON();
       expect(tree).toMatchSnapshot();

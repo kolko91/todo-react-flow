@@ -8,7 +8,7 @@ import App from './components/App';
 import './index.css';
 
 // axios.defaults.baseURL = 'api/';
-axios.defaults.baseURL = 'http://localhost:3004/';
+axios.defaults.baseURL = 'http://localhost:9000/api';
 
 const element = document.getElementById('root');
 if (!element) {

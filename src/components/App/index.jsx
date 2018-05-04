@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Footer from 'components/Footer';
 import TodoListContainer from 'containers/TodoListContainer';
 import TodoForm from 'containers/TodoForm';
+import AccessCheck from 'containers/AccessCheck';
 
 const Content = styled.div`
     background: #fff;
@@ -14,9 +15,11 @@ const Content = styled.div`
 
 const App = () => (
   <Content>
-    <TodoForm />
-    <TodoListContainer />
-    <Footer />
+    <AccessCheck>
+      <TodoForm />
+      <TodoListContainer />
+      <Footer />
+    </AccessCheck>
   </Content>
 );
 

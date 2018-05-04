@@ -2,27 +2,27 @@
   "todos": [
     {
       "id": 1,
-      "text": "title1",
-      "completed": true
+      "title": "title1",
+      "done": true
     },
     {
-      "text": "test 323423423",
-      "completed": false,
+      "title": "test 323423423",
+      "done": false,
       "id": 4
     },
     {
-      "text": "test 4werwerwe",
-      "completed": true,
+      "title": "test 4werwerwe",
+      "done": true,
       "id": 5
     },
     {
-      "text": "1234",
-      "completed": false,
+      "title": "1234",
+      "done": false,
       "id": 6
     },
     {
-      "text": "dsfsdf234234",
-      "completed": false,
+      "title": "dsfsdf234234",
+      "done": false,
       "id": 7
     }
   ]

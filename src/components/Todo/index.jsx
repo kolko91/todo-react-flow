@@ -2,16 +2,16 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
 import TodoEditTextInput from 'components/TodoEditTextInput';
-import type { Text } from 'types/todos';
+import type { Title } from 'types/todos';
 import toogleImage from './toogle.svg';
 import toogleCheckImage from './toogle-check.svg';
 
 export type Props = {
   onClick: () => void,
   onDeleteClick: ()=> void,
-  editTodo: (text: Text)=>void,
-  completed: boolean,
-  text: Text
+  editTodo: (text: Title)=>void,
+  done: boolean,
+  title: Title
 };
 
 const Toggle = styled.input`
@@ -65,8 +65,8 @@ const DestroyButton = styled.button`
 `;
 
 const Item = styled.li`
-    background: ${({ completed }: Props) => (completed ? '#f1f1f1' : '#fff')};
-    text-decoration: ${({ completed }: Props) => (completed ? 'line-through' : 'none')};
+    background: ${({ done }: Props) => (done ? '#f1f1f1' : '#fff')};
+    text-decoration: ${({ done }: Props) => (done ? 'line-through' : 'none')};
     position: relative;
     font-size: 24px;
     border-bottom: 1px solid #ededed;
@@ -86,7 +86,7 @@ class Todo extends PureComponent<Props, {editing: boolean}> {
     this.setState({ editing: true });
   }
 
-  handleSave = (text: Text) => {
+  handleSave = (text: Title) => {
     if (text.length === 0) {
       this.props.onDeleteClick();
     } else {
@@ -97,7 +97,7 @@ class Todo extends PureComponent<Props, {editing: boolean}> {
 
   render() {
     const {
-      onClick, completed, text, onDeleteClick,
+      onClick, done, title, onDeleteClick,
     } = this.props;
     const { editing } = this.state;
     let element;
@@ -105,25 +105,25 @@ class Todo extends PureComponent<Props, {editing: boolean}> {
     if (editing) {
       element = (
         <TodoEditTextInput
-          text={text}
-          onSave={(t: Text) => this.handleSave(t)}
+          title={title}
+          onSave={(t: Title) => this.handleSave(t)}
         />
       );
     } else {
       element = (
         <div>
           <Toggle
-            checked={completed}
+            checked={done}
             onChange={onClick}
             type="checkbox"
           />
-          <Label onDoubleClick={this.handleDoubleClick}>{text}</Label>
+          <Label onDoubleClick={this.handleDoubleClick}>{title}</Label>
           <DestroyButton onClick={onDeleteClick} />
         </div>);
     }
 
     return (
-      <Item completed={completed} >
+      <Item done={done} >
         {element}
       </Item>);
   }

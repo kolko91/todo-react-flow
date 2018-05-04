@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
-import type { Text } from 'types/todos';
+import type { Title } from 'types/todos';
 
 const EditField = styled.input`
     display: block;
@@ -11,13 +11,13 @@ const EditField = styled.input`
 `;
 
 type Props = {
-  onSave: (text: Text)=>void,
-  text: Text
+  onSave: (text: Title)=>void,
+  title: Title
 }
 
-export default class TodoEditTextInput extends PureComponent<Props, {text: Text}> {
+export default class TodoEditTextInput extends PureComponent<Props, {title: Title}> {
   state = {
-    text: this.props.text,
+    title: this.props.title,
   }
 
   handleSubmit = (e: SyntheticKeyboardEvent<HTMLButtonElement>) => {
@@ -33,7 +33,7 @@ export default class TodoEditTextInput extends PureComponent<Props, {text: Text}
   handleChange = (e: Event) => {
     const { target } = e;
     if (target instanceof HTMLInputElement) {
-      this.setState({ text: target.value });
+      this.setState({ title: target.value });
     }
   }
 
@@ -50,7 +50,7 @@ export default class TodoEditTextInput extends PureComponent<Props, {text: Text}
       <EditField
         type="text"
         autoFocus="true"
-        value={this.state.text}
+        value={this.state.title}
         onBlur={this.handleBlur}
         onChange={this.handleChange}
         onKeyDown={this.handleSubmit}

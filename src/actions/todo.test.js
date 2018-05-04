@@ -18,8 +18,8 @@ describe('todo actions', () => {
   it('creates TODO_SUCCESS when fetching todos has been done', () => {
     mock.onGet('/todos').reply(200, [{
       id: 1,
-      text: 'title1',
-      completed: true,
+      title: 'title1',
+      done: true,
     }]);
 
     const expectedActions = [
@@ -29,8 +29,8 @@ describe('todo actions', () => {
         payload: {
           data: [{
             id: 1,
-            text: 'title1',
-            completed: true,
+            title: 'title1',
+            done: true,
           }],
         },
       },
@@ -52,8 +52,8 @@ describe('todo actions', () => {
   it('creates TOGGLE_TODO when toggled todos has been done', () => {
     mock.onPut('/todos/1').reply(200, {
       id: 1,
-      text: 'title1',
-      completed: false,
+      title: 'title1',
+      done: false,
     });
 
     const expectedActions = [
@@ -62,8 +62,8 @@ describe('todo actions', () => {
         payload: {
           data: {
             id: 1,
-            text: 'title1',
-            completed: false,
+            title: 'title1',
+            done: false,
           },
         },
       },
@@ -73,8 +73,8 @@ describe('todo actions', () => {
       todos: {
         data: [{
           id: 1,
-          text: 'title1',
-          completed: true,
+          title: 'title1',
+          done: true,
         }],
         loaded: false,
         error: false,
@@ -83,8 +83,8 @@ describe('todo actions', () => {
 
     return store.dispatch(actions.toggleTodo(1, {
       id: 1,
-      text: 'title1',
-      completed: true,
+      title: 'title1',
+      done: true,
     })).then(() => {
       // return of async actions
       expect(store.getActions()).toMatchObject(expectedActions);

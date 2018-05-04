@@ -20,7 +20,7 @@ const toggleTodo = (todos: Todos, id: Id): Todos => todos.map((t: Todo) => {
   if (t.id !== id) {
     return t;
   }
-  return { ...t, completed: !t.completed };
+  return { ...t, done: !t.done };
 });
 
 export default (state: TodosState = initialState, action: TodosAction) => {

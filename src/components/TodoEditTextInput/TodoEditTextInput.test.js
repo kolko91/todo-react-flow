@@ -8,7 +8,7 @@ describe('component', () => {
     it('should render correctly', () => {
       const props = {
         onSave: jest.fn(),
-        text: 'Test',
+        title: 'Test',
       };
       const tree = renderer.create(<TodoEditTextInput {...props} />).toJSON();
       expect(tree).toMatchSnapshot();
