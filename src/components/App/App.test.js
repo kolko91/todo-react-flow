@@ -1,9 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRenderer } from 'react-test-renderer/shallow';
+import TodoForm from 'containers/TodoForm';
+import Footer from 'components/Footer';
+import TodoListContainer from 'containers/TodoListContainer';
 import App from './index';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+const setup = () => {
+  const renderer = createRenderer();
+  renderer.render(<App />);
+  const output = renderer.getRenderOutput();
+  return output;
+};
+
+describe('components', () => {
+  describe('TodoForm', () => {
+    it('should render', () => {
+      const output = setup();
+      const [form] = output.props.children;
+      expect(form.type).toBe(TodoForm);
+    });
+  });
+
+  describe('FilterLink', () => {
+    it('should render', () => {
+      const output = setup();
+      const [,, footer] = output.props.children;
+      expect(footer.type).toBe(Footer);
+    });
+  });
+
+  describe('TodoListContainer', () => {
+    it('should render', () => {
+      const output = setup();
+      const [, list] = output.props.children;
+      expect(list.type).toBe(TodoListContainer);
+    });
+  });
 });

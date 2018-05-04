@@ -26,7 +26,7 @@ class TodoListContainer extends Component<Props> {
     const { todos } = this.props;
     const todo = _.find(todos.data, { id });
     if (todo) {
-      this.props.todosActions.toggleTodo(id, !todo.completed);
+      this.props.todosActions.toggleTodo(id, todo);
     }
   }
 

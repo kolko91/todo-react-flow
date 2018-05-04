@@ -2,7 +2,18 @@
   "name": "todo-react-flow",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "flow": "flow",
+    "lint": "eslint --ext=js --ext=jsx ./src/",
+    "json-server":"json-server --watch db.json --port 3004"
+  },
   "dependencies": {
+    "axios": "^0.18.0",
+    "json-server": "^0.12.2",
     "lodash": "^4.17.10",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -14,14 +25,6 @@
     "reselect": "^3.0.1",
     "styled-components": "^3.2.6"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "flow": "flow",
-    "lint": "eslint --ext=js --ext=jsx ./src/"
-  },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
@@ -31,9 +34,10 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "fetch-mock": "^6.3.0",
     "flow-bin": "^0.71.0",
     "flow-typed": "^2.4.0",
-    "jest": "^22.4.3",
-    "jest-cli": "^22.4.3"
+    "react-test-renderer": "^16.3.2",
+    "redux-mock-store": "^1.5.1"
   }
 }

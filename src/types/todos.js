@@ -15,9 +15,9 @@ export type Text = string;
 export type Completed = boolean;
 
 export type Todo = {
-  +id: Id,
-  +text: Text,
-  +completed: boolean
+  id: Id,
+  text: Text,
+  completed: boolean
 };
 
 export type Todos = Array<Todo>;

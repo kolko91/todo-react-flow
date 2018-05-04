@@ -1,4 +1,5 @@
-import type { Id, Text, Completed } from 'types/todos';
+import axios from 'axios';
+import type { Id, Text, Todo } from 'types/todos';
 import type { Dispatch } from 'types';
 
 export const TODO_FETCH: 'TODO_FETCH' = 'TODO_FETCH';
@@ -24,36 +25,18 @@ export function fetchTodos() {
     }
 
     try {
-      /* const success = await axios({
-        method: 'get',
-        url: `/info/fleets/sites`,
-        headers: {},
-        withCredentials: true,
-        params
-      }) */
-
-      // return onSuccess(success);
-      return onSuccess({
-        data: [
-          {
-            id: 1,
-            text: 'title1',
-            completed: false,
-          },
-          {
-            id: 2,
-            text: 'title2',
-            completed: false,
-          },
-        ],
+      const success = await axios({
+        method: 'GET',
+        url: '/todos',
       });
+      return onSuccess(success);
     } catch (error) {
       return onError(error);
     }
   };
 }
 
-export function toggleTodo(id: Id, completed: Completed) {
+export function toggleTodo(id: Id, todo: Todo) {
   return async (dispatch: Dispatch) => {
     function onSuccess(success) {
       dispatch({ type: TOGGLE_TODO, payload: success });
@@ -66,21 +49,13 @@ export function toggleTodo(id: Id, completed: Completed) {
     }
 
     try {
-      /* const success = await axios({
-        method: 'get',
-        url: `/info/fleets/sites`,
-        headers: {},
-        withCredentials: true,
-        params
-      }) */
-
-      // return onSuccess(success);
-      return onSuccess({
-        data: {
-          id,
-          completed,
-        },
+      const success = await axios({
+        method: 'PUT',
+        url: `/todos/${id}`,
+        data: { ...todo, completed: !todo.completed },
       });
+
+      return onSuccess(success);
     } catch (error) {
       return onError(error);
     }
@@ -99,22 +74,16 @@ export const addTodo = (text: Text) => async (dispatch: Dispatch) => {
     return error;
   }
   try {
-    /* const success = await axios({
-        method: 'get',
-        url: `/info/fleets/sites`,
-        headers: {},
-        withCredentials: true,
-        params
-      }) */
-
-    // return onSuccess(success);
-    return onSuccess({
+    const success = await axios({
+      method: 'POST',
+      url: '/todos',
       data: {
-        id: +new Date(),
         text,
         completed: false,
       },
     });
+
+    return onSuccess(success);
   } catch (error) {
     return onError(error);
   }
@@ -131,15 +100,10 @@ export const deleteTodo = (id: Id) => async (dispatch: Dispatch) => {
     return error;
   }
   try {
-    /* const success = await axios({
-        method: 'get',
-        url: `/info/fleets/sites`,
-        headers: {},
-        withCredentials: true,
-        params
-      }) */
-
-    // return onSuccess(success);
+    await axios({
+      method: 'DELETE',
+      url: `/todos/${id}`,
+    });
     return onSuccess({
       data: { id },
     });
@@ -148,7 +112,7 @@ export const deleteTodo = (id: Id) => async (dispatch: Dispatch) => {
   }
 };
 
-export const editTodo = (id: Id, text: Text) => async (dispatch: Dispatch) => {
+export const editTodo = (id: Id, todo: Todo) => async (dispatch: Dispatch) => {
   function onSuccess(success) {
     dispatch({ type: EDIT_TODO, payload: success });
     return success;
@@ -159,18 +123,13 @@ export const editTodo = (id: Id, text: Text) => async (dispatch: Dispatch) => {
     return error;
   }
   try {
-    /* const success = await axios({
-        method: 'get',
-        url: `/info/fleets/sites`,
-        headers: {},
-        withCredentials: true,
-        params
-      }) */
-
-    // return onSuccess(success);
-    return onSuccess({
-      data: { id, text },
+    const success = await axios({
+      method: 'PUT',
+      url: `/todos/${id}`,
+      data: todo,
     });
+
+    return onSuccess(success);
   } catch (error) {
     return onError(error);
   }
