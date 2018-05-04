@@ -54,7 +54,6 @@ export function toggleTodo(id: Id, todo: Todo) {
         url: `/todos/${id}`,
         data: { ...todo, completed: !todo.completed },
       });
-
       return onSuccess(success);
     } catch (error) {
       return onError(error);
