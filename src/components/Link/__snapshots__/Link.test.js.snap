@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component Link should render correctly 1`] = `
+<a
+  className="sc-bdVaJa dKuIrI"
+  href="#"
+  onClick={[Function]}
+>
+  All
+</a>
+`;

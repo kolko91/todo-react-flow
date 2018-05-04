@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component TodoList should render correctly 1`] = `
+<ul
+  className="sc-EHOje iRXTJc"
+>
+  <li
+    className="sc-ifAKCX hdYSEK"
+  >
+    <div>
+      <input
+        checked={true}
+        className="sc-bwzfXH dydaOf"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="sc-htpNat dDFmjJ"
+        onDoubleClick={[Function]}
+      >
+        title1
+      </label>
+      <button
+        className="sc-bxivhb bKUsik"
+        onClick={[Function]}
+      />
+    </div>
+  </li>
+  <li
+    className="sc-ifAKCX kYTDwW"
+  >
+    <div>
+      <input
+        checked={false}
+        className="sc-bwzfXH dydaOf"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="sc-htpNat dDFmjJ"
+        onDoubleClick={[Function]}
+      >
+        test2
+      </label>
+      <button
+        className="sc-bxivhb bKUsik"
+        onClick={[Function]}
+      />
+    </div>
+  </li>
+</ul>
+`;

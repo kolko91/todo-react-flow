@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component Todo should render correctly 1`] = `
+<li
+  className="sc-ifAKCX kYTDwW"
+>
+  <div>
+    <input
+      checked={false}
+      className="sc-bwzfXH dydaOf"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      className="sc-htpNat dDFmjJ"
+      onDoubleClick={[Function]}
+    >
+      Test
+    </label>
+    <button
+      className="sc-bxivhb bKUsik"
+      onClick={[Function]}
+    />
+  </div>
+</li>
+`;
