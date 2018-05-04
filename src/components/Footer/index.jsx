@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {
   SHOW_ACTIVE,
@@ -38,32 +38,27 @@ const Filter = styled.li`
     display: inline;
 `;
 
-type Props = {};
 
-class Footer extends Component<Props> {
-  render() {
-    return (
-      <FooterContainer>
-        <FiltersList>
-          <Filter>
-            <FilterLink filter={SHOW_ALL}>
+const Footer = () => (
+  <FooterContainer>
+    <FiltersList>
+      <Filter>
+        <FilterLink filter={SHOW_ALL}>
             All
-            </FilterLink>
-          </Filter>
-          <Filter>
-            <FilterLink filter={SHOW_ACTIVE}>
+        </FilterLink>
+      </Filter>
+      <Filter>
+        <FilterLink filter={SHOW_ACTIVE}>
             Active
-            </FilterLink>
-          </Filter>
-          <Filter>
-            <FilterLink filter={SHOW_COMPLETED}>
+        </FilterLink>
+      </Filter>
+      <Filter>
+        <FilterLink filter={SHOW_COMPLETED}>
             Completed
-            </FilterLink>
-          </Filter>
-        </FiltersList>
-      </FooterContainer>
-    );
-  }
-}
+        </FilterLink>
+      </Filter>
+    </FiltersList>
+  </FooterContainer>
+);
 
 export default Footer;

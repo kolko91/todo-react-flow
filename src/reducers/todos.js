@@ -16,7 +16,12 @@ const initialState: TodosState = {
   error: false,
 };
 
-const toggleTodo = (todos: Todos, id: Id): Todos => todos.map(t => (t.id !== id ? t : { ...t, completed: !t.completed }));
+const toggleTodo = (todos: Todos, id: Id): Todos => todos.map((t: Todo) => {
+  if (t.id !== id) {
+    return t;
+  }
+  return { ...t, completed: !t.completed };
+});
 
 export default (state: TodosState = initialState, action: TodosAction) => {
   switch (action.type) {

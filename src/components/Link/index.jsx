@@ -1,4 +1,4 @@
-import React, { Component, type Node } from 'react';
+import React, { type Node } from 'react';
 import styled from 'styled-components';
 
 

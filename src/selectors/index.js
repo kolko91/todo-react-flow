@@ -1,7 +1,8 @@
+/* eslint import/prefer-default-export: 0 */
 import { createSelector } from 'reselect';
 
-import type { State } from 'types';
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from 'actions/filter';
+import type { State } from 'types';
 
 const todosSelector = (state: {todos: State}) => state.todos;
 const filterSelector = (state: State) => state.filter;
