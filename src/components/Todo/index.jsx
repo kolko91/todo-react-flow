@@ -83,11 +83,12 @@ const EditField = styled.input`
 
 const Todo = ({ onClick, completed, text }: Props) => (
   <Item
-    onClick={onClick}
     completed={completed}
   >
-    <div className="view">
+    <div>
       <Toggle
+        checked={completed}
+        onChange={onClick}
         type="checkbox"
       />
       <Label>{text}</Label>

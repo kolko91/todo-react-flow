@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import {
+  SHOW_ACTIVE,
+  SHOW_ALL,
+  SHOW_COMPLETED,
+} from 'actions/filter';
 import FilterLink from 'containers/FilterLink';
 
 const FooterContainer = styled.div`
@@ -42,17 +46,17 @@ class Footer extends Component<Props> {
       <FooterContainer>
         <FiltersList>
           <Filter>
-            <FilterLink filter="SHOW_ALL">
+            <FilterLink filter={SHOW_ALL}>
             All
             </FilterLink>
           </Filter>
           <Filter>
-            <FilterLink filter="SHOW_ACTIVE">
+            <FilterLink filter={SHOW_ACTIVE}>
             Active
             </FilterLink>
           </Filter>
           <Filter>
-            <FilterLink filter="SHOW_COMPLETED">
+            <FilterLink filter={SHOW_COMPLETED}>
             Completed
             </FilterLink>
           </Filter>

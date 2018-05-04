@@ -20,16 +20,22 @@ const StyledLink = styled.a`
     }
 `;
 
+const ActiveLink = styled.span`
+    margin: 3px;
+    padding: 3px 7px;
+    border: 1px solid transparent;
+    border-color: rgba(175, 47, 47, 0.1);
+`;
+
 const Link = ({ active, children, onClick }: Props) => {
   if (active) {
-    return <span>{children}</span>;
+    return <ActiveLink>{children}</ActiveLink>;
   }
 
   return (
     <StyledLink
       href="#"
-      onClick={(event: Event) => {
-        event.preventDefault();
+      onClick={() => {
         onClick();
       }}
     >

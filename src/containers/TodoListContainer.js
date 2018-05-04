@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import * as todosActions from 'actions/todo';
-import type { TodosState, Id, Todo } from 'types/todos';
+import type { TodosState, Id } from 'types/todos';
 import type { Dispatch } from 'types';
+import { filteredTodosSelector } from 'selectors';
 
 import TodoList from 'components/TodoList';
 
@@ -12,6 +13,7 @@ type Props = {
   todos: TodosState,
   todosActions: any
 }
+
 class TodoListContainer extends Component<Props> {
   componentDidMount() {
     const { todos } = this.props;
@@ -35,7 +37,7 @@ class TodoListContainer extends Component<Props> {
 }
 
 const mapStateToProps = (state: any) => ({
-  todos: state.todos,
+  todos: filteredTodosSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
