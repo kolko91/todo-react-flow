@@ -28,7 +28,7 @@ const TodoList = ({
         {...todo}
         onClick={() => onTodoClick(todo.id)}
         onDeleteClick={() => onDeleteClick(todo.id)}
-        editTodo={(text: Title) => editTodo(todo.id, { ...todo, text: title })}
+        editTodo={(title: Title) => editTodo(todo.id, { ...todo, text: title })}
       />
     ))}
   </List>

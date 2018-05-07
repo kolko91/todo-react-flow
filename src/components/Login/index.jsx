@@ -73,7 +73,7 @@ class App extends Component<Props, State> {
   }
 
   render() {
-    const {error} = this.props;
+    const { error } = this.props;
     return (
       <FormContainer>
         <form onSubmit={this.handleSubmit}>

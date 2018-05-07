@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import styled from 'styled-components';
 
 import store from './store';
 import App from './components/App';
@@ -14,9 +15,18 @@ const element = document.getElementById('root');
 if (!element) {
   throw new Error("couldn't find element with id root");
 }
+const Content = styled.div`
+    background: #fff;
+    margin: 130px 0 40px 0;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+`;
+
 render(
   <Provider store={store}>
-    <App />
+    <Content>
+      <App />
+    </Content>
   </Provider>,
   element,
 );
