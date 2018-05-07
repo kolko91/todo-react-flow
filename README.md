@@ -4,7 +4,6 @@
 
 - yarn install
 - yarn start
-- yarn json-server
 
 ## For Build
 
