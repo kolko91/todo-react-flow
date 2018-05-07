@@ -17,6 +17,11 @@ const initialState: TokenState = {
 
 export default (state: TokenState = initialState, action: TokenAction) => {
   switch (action.type) {
+    case 'persist/REHYDRATE':
+      if (action.payload && action.payload.token) {
+        axios.defaults.headers.common['x-auth-token'] = action.payload.token.data;
+      }
+      return state;
     case FETCH_TOKEN:
     case TOKEN_CLEAR:
       return {

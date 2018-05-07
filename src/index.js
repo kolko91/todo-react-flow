@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { TOKEN_CLEAR } from 'actions/token';
 import styled from 'styled-components';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import store from './store';
 import App from './components/App';
@@ -14,8 +15,10 @@ axios.defaults.baseURL = 'http://localhost:9000/api';
 
 axios.interceptors.response.use(response => response, (error) => {
   // Do something with response error
+
   if (error.response.status === 403) {
-    store.dispatch({ type: TOKEN_CLEAR });
+    // console.log('test');
+    store.store.dispatch({ type: TOKEN_CLEAR });
   }
   // Trow errr again (may be need for some other catch)
   return Promise.reject(error);
@@ -33,10 +36,12 @@ const Content = styled.div`
 `;
 
 render(
-  <Provider store={store}>
-    <Content>
-      <App />
-    </Content>
+  <Provider store={store.store}>
+    <PersistGate loading={null} persistor={store.persistor} >
+      <Content>
+        <App />
+      </Content>
+    </PersistGate>
   </Provider>,
   element,
 );

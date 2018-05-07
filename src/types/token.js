@@ -21,5 +21,6 @@ export type TokenAction =
   | { type: typeof FETCH_TOKEN}
   | { type: typeof TOKEN_SUCCESS, payload: TokenPayload }
   | { type: typeof TOKEN_FAIL, error: any }
+  | { type: 'persist/REHYDRATE', payload: any }
   | { type: typeof TOKEN_CLEAR };
 
