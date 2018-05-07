@@ -22,7 +22,6 @@ axios.interceptors.response.use(response => response, (error: any) => {
   // Do something with response error
 
   if (error.response.status === 403) {
-    // console.log('test');
     store.store.dispatch({ type: TOKEN_CLEAR });
   }
   // Trow errr again (may be need for some other catch)

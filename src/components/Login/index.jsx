@@ -52,8 +52,8 @@ type State = {
 
 class App extends Component<Props, State> {
   state = {
-    username: 'james',
-    pass: 'password',
+    username: '',
+    pass: '',
   }
   handleUsernameChange = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
     this.setState({ username: event.currentTarget.value });
@@ -77,6 +77,7 @@ class App extends Component<Props, State> {
     return (
       <FormContainer>
         <form onSubmit={this.handleSubmit}>
+          <div> <p>james / bond007 or bond / bond007</p></div>
           <FormInput
             type="text"
             placeholder="username"
