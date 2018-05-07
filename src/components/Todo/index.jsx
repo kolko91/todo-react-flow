@@ -86,11 +86,11 @@ class Todo extends PureComponent<Props, {editing: boolean}> {
     this.setState({ editing: true });
   }
 
-  handleSave = (text: Title) => {
-    if (text.length === 0) {
+  handleSave = (title: Title) => {
+    if (title.length === 0) {
       this.props.onDeleteClick();
     } else {
-      this.props.editTodo(text);
+      this.props.editTodo(title);
     }
     this.setState({ editing: false });
   }
