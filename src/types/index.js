@@ -6,9 +6,9 @@ import type { TokenAction, TokenState } from './token';
 
 export type ReduxInitAction = { type: '@@INIT' };
 
-export type Action = ReduxInitAction | TodosAction | FilterAction | TokenState;
+export type Action = ReduxInitAction | TodosAction | FilterAction | TokenAction;
 
-export type State = TodosState & FilterState & TokenAction;
+export type State = TodosState & FilterState & TokenState;
 
 export type Dispatch = ReduxDispatch<Action>;
 

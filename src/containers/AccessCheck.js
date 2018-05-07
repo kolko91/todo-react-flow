@@ -12,7 +12,10 @@ type Props = {
 
 const AccessCheck = ({ children, token, loginAction }: Props) => {
   if (!token.loaded) {
-    return <Login onSubmit={(username, pass) => { loginAction(username, pass); }} error={token.error} />;
+    return (<Login
+      onSubmit={(username, pass) => { loginAction(username, pass); }}
+      error={token.error}
+    />);
   }
   return (
     <div>

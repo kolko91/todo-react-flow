@@ -13,7 +13,12 @@ import './index.css';
 // axios.defaults.baseURL = 'api/';
 axios.defaults.baseURL = 'http://localhost:9000/api';
 
-axios.interceptors.response.use(response => response, (error) => {
+declare type Response = {
+  ok: boolean,
+  json: ()=> any,
+}
+
+axios.interceptors.response.use(response => response, (error: any) => {
   // Do something with response error
 
   if (error.response.status === 403) {

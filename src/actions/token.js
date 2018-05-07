@@ -41,7 +41,7 @@ export function logout() {
     dispatch({ type: FETCH_TOKEN });
 
     function onSuccess(success) {
-      dispatch({ type: TOKEN_CLEAR});
+      dispatch({ type: TOKEN_CLEAR });
       return success;
     }
 
