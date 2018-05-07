@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { TOKEN_CLEAR } from 'actions/token';
 import styled from 'styled-components';
 
 import store from './store';
@@ -10,6 +11,15 @@ import './index.css';
 
 // axios.defaults.baseURL = 'api/';
 axios.defaults.baseURL = 'http://localhost:9000/api';
+
+axios.interceptors.response.use(response => response, (error) => {
+  // Do something with response error
+  if (error.response.status === 403) {
+    store.dispatch({ type: TOKEN_CLEAR });
+  }
+  // Trow errr again (may be need for some other catch)
+  return Promise.reject(error);
+});
 
 const element = document.getElementById('root');
 if (!element) {

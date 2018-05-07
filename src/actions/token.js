@@ -1,8 +1,3 @@
-import type {
-  Filter,
-  FilterAction,
-} from 'types/filter';
-
 import axios from 'axios';
 
 export const FETCH_TOKEN: 'FETCH_TOKEN' = 'FETCH_TOKEN';
@@ -46,7 +41,7 @@ export function logout() {
     dispatch({ type: FETCH_TOKEN });
 
     function onSuccess(success) {
-      dispatch({ type: TOKEN_SUCCESS, payload: success });
+      dispatch({ type: TOKEN_CLEAR});
       return success;
     }
 
